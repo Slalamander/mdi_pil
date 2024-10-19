@@ -7,6 +7,8 @@ There are also two additional functions, `parse_weather_icon` and `make_battery_
 ## Install
 `pip install mdi-pil`
 
+When working in Visual Studio, i'd also advise using the MDI Intellisense extension: https://marketplace.visualstudio.com/items?itemName=lukas-tr.materialdesignicons-intellisense
+
 # Examples
 
 Make a PIL image object with the icon "mdi:test-tube" and open a window to show it:
