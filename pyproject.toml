@@ -1,0 +1,21 @@
+[project]
+name = "mdi_pil"
+version = "0.0.1"
+authors = [
+    { name="Slalamander" },
+]
+description = "A library to draw MDI icons onto PIL Image objects."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GPL-3.0-only",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "Pillow",
+]
+
+[project.urls]
+Homepage = "https://github.com/pypa/sampleproject"
+Issues = "https://github.com/pypa/sampleproject/issues"
