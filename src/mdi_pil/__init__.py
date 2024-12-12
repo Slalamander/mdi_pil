@@ -7,10 +7,9 @@
     Works by mapping the icon identifier (`"mdi:icon"`) to the hex values to the hex codes of the mdi webfont (materialdesignicons-webfont.ttf). The scss (_variables.scss) file is used to create this mapping.
     For those files, see: https://github.com/Templarian/MaterialDesign-Webfont (They should come with the package however).
 """
-
-from pathlib import Path
-from typing import Union, Literal, Optional, Any
 import logging
+from typing import Union, Literal, Optional, Any
+from types import MappingProxyType
 from math import cos, sin
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps, ImageChops
@@ -22,14 +21,16 @@ ALLOWED_MDI_IDENTIFIERS = ["mdi:"]
 
 logger = logging.getLogger(__name__)
 
-Image.new
-
 def rotation_matrix(coordinates:list[tuple[int,int]], angle : int, center: tuple[int,int] = (0,0)) -> list[tuple[int,int]]:
     """
     Applies a rotation matrix to the provided coordinates
-        args:
-            coordinates: list of (x,y) tuples to apply to transformation to
-            angle: rotation angle in radians
+    
+    Paramaters
+    ----------
+    coordinates: list[tuple['x','y']]
+        tuples of coordinates to apply to transformation to
+    angle: float
+        rotation angle in radians
     """
     v = []
     for (xo,yo) in coordinates:
@@ -74,13 +75,13 @@ def _build_mdi_dict() -> dict:
         hexcode = hexcode.strip()
         mdi_icon_dict[icon] = str(hexcode)
 
-    mdi_dict["mdi-icons"] = mdi_icon_dict
+    mdi_dict["mdi-icons"] = MappingProxyType(mdi_icon_dict)
 
     del(mdi_file)
     del(mdi_headers)
     del(icon_list)
     del(mdi_elements)
-    return mdi_dict
+    return MappingProxyType(mdi_dict)
 
 mdi_dict = _build_mdi_dict()
 mdi_icons = mdi_dict["mdi-icons"]
@@ -122,8 +123,16 @@ def get_mdi_unicode(hexcode):
 def parse_MDI_Icon(mdi : str) -> tuple[Literal["unicode"], Literal["hexcode"]]:
     """
     Returns the unicode and hexcode of the mdi icon requested, which can then be used in the draw_mdi_icon function
-    args:
-        mdistr (str): string of the icon. Must start with mdi:
+
+    Paramaters
+    ----------
+    mdi : str
+        the mdi identifier
+
+    Returns
+    -------
+    tuple[str,str]
+        Tuple with the icon's unicode and hexcode
     """
     mdistr = mdi.lower()
     if mdistr[0:4] not in ALLOWED_MDI_IDENTIFIERS:
@@ -216,7 +225,8 @@ def invert_Image(img : Image.Image) -> Image.Image:
         img = ImageOps.invert(img)
     return img
 
-def draw_mdi_icon(Pillowimg : Image.Image, mdi : Union[tuple,str], icon_coords : tuple[Literal["x"],Literal["y"]]=None, icon_size:int=None, icon_color : Union[str,tuple] ="black", iconDraw: Optional[ImageDraw.ImageDraw] = None) -> Image.Image:
+def draw_mdi_icon(Pillowimg : Image.Image, mdi : Union[tuple,str], 
+                icon_coords : tuple[Literal["x"],Literal["y"]]=None, icon_size:int=None, icon_color : Union[str,tuple] ="black", iconDraw: Optional[ImageDraw.ImageDraw] = None) -> Image.Image:
     """
     Draws the provided mdi icon onto Pillowimg.
 

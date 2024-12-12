@@ -7,8 +7,6 @@ There are also two additional functions, `parse_weather_icon` and `make_battery_
 ## Install
 `pip install mdi-pil`
 
-When working in Visual Studio, i'd also advise using the MDI Intellisense extension: https://marketplace.visualstudio.com/items?itemName=lukas-tr.materialdesignicons-intellisense
-
 # Examples
 
 Make a PIL image object with the icon "mdi:test-tube" and open a window to show it:
@@ -36,7 +34,46 @@ img = mdi.make_mdi_icon(img, 100, color="steelblue")
 img.show()
 ```
 
-# References:
-- MDI Icons: https://pictogrammers.com/
-- MDI Webfont: https://github.com/Templarian/MaterialDesign-Webfont
-- PyPI Package: https://pypi.org/project/mdi-pil/
+## ttkbootstrap
+
+Version 1.1.0 comes with an optional extension to use MDI icons in tkinter interfaces. To have  functional theming, the ttkbootstrap package is used.
+
+**installation**: `pip install mdi-pil[ttkbootstrap]` (If ttkbootstrap is not yet installed)
+
+
+### Usage:
+
+The classes return PhotoImage objects, so they are used in the same way you'd use a `PIL.ImageTk.PhotoImage`.
+
+For more info on styling than is in the docstrings, look at the documentation for ttkbootstrap and tkinter itself.
+
+A very rudimentary example is below, which can be run as is:
+
+```python
+from ttkbootstrap import Window, Button
+from mdi_pil.ttkbootstrap_mdi import MDIIcon, MDIButton
+
+window_size = (750,200)
+root = Window(size=window_size)
+
+KEEP = []   ##Images need to be saved somewhere to prevent garbage collecion
+
+icon = "mdi:test-tube"
+icon_size = int(window_size[1]/2)
+imgTk = MDIIcon(icon, (100,100), bootstyle="info")
+iconWidget = Button(root,image=imgTk, cursor="hand2", 
+                        width=100, padding=-1
+                        )
+KEEP.append(imgTk)
+iconWidget.pack()
+
+icon = "mdi:earth"
+text = "Hello World!"
+button_size = (window_size[0],int(window_size[1]/2))
+imgTk = MDIButton(icon, text, button_size, bootstyle="success")
+buttonWidget = Button(root,image=imgTk, cursor="hand2")
+KEEP.append(imgTk)
+buttonWidget.pack()
+
+root.mainloop()
+```

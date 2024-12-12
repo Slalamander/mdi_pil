@@ -2,8 +2,7 @@
 from pathlib import Path
 from typing import Literal, TypeVar, Union
 
-p = Path(__file__).resolve().with_name("other-file.dat")
-# p = p.absolute()
+__version__ = "1.1.1"
 
 MDI_FONT_FILE = "materialdesignicons-webfont.ttf"
 MDI_INDEX_FILE = "_variables.scss"

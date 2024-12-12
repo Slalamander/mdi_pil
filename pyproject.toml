@@ -1,21 +1,33 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
 [project]
 name = "mdi_pil"
-version = "0.0.1"
 authors = [
     { name="Slalamander" },
 ]
 description = "A library to draw MDI icons onto PIL Image objects."
 readme = "README.md"
 requires-python = ">=3.9"
+keywords = ["mdi", "MaterialDesignIcon", "pictogrammers", "mdi icons"]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: GPL-3.0-only",
     "Operating System :: OS Independent",
 ]
 dependencies = [
     "Pillow",
 ]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+ttk = ["ttkbootstrap"]
 
 [project.urls]
-Homepage = "https://github.com/pypa/sampleproject"
-Issues = "https://github.com/pypa/sampleproject/issues"
+Homepage = "https://github.com/Slalamander/mdi_pil"
+
+[tool.setuptools.dynamic]
+version = {attr = "mdi_pil.constants.__version__"}
