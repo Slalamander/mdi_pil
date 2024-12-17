@@ -21,6 +21,8 @@ ALLOWED_MDI_IDENTIFIERS = ["mdi:"]
 
 logger = logging.getLogger(__name__)
 
+MDI_TRUETYPE_FONT = ImageFont.truetype(MDI_FONT_FILE.as_posix())
+
 def rotation_matrix(coordinates:list[tuple[int,int]], angle : int, center: tuple[int,int] = (0,0)) -> list[tuple[int,int]]:
     """
     Applies a rotation matrix to the provided coordinates
@@ -265,13 +267,11 @@ def draw_mdi_icon(Pillowimg : Image.Image, mdi : Union[tuple,str],
     if iconDraw == None:
         iconDraw = ImageDraw.Draw(Pillowimg)
 
-    mdi_font_file = MDI_FONT_FILE.as_posix()
-    # print(mdi_font_file)
     img_size = Pillowimg.size
 
     ##If None, shouldn't font size be the y coordinate by default? --> no it has to fit in a box
     font_size = min(img_size) if icon_size == None else int(icon_size)
-    mdi_font = ImageFont.truetype(mdi_font_file, font_size)
+    mdi_font = MDI_TRUETYPE_FONT.font_variant(size=font_size)
     mdi_str = (mdi_tuple[0])
     
     if icon_coords == None:
@@ -283,7 +283,6 @@ def draw_mdi_icon(Pillowimg : Image.Image, mdi : Union[tuple,str],
         anchor="mm",
         font=mdi_font,
         fill = fill)
-    # del(mdi_font)
     return Pillowimg
 
 def make_mdi_icon(img : Union[Image.Image,str], size : int = 500, color : ColorType = None) -> Image.Image:
@@ -309,7 +308,6 @@ def make_mdi_icon(img : Union[Image.Image,str], size : int = 500, color : ColorT
     if isinstance(img, Image.Image):
         iconImg = img
     else:
-        # img = parse_known_image_file(self.icon)
         iconImg = Image.open(img)
     ##Convert it here already to prevent problems with pasting etc. Cause like this is is guaranteed to have an alpha channel
     if iconImg.mode != "RGBA": iconImg = iconImg.convert("RGBA")
@@ -326,7 +324,6 @@ def make_mdi_icon(img : Union[Image.Image,str], size : int = 500, color : ColorT
     iconImg = ImageOps.pad(iconImg,(size,size))
     
     if color != None:
-        #iconImg = L.point(lambda i: icon_color_value)
         icondraw = ImageDraw.Draw(iconImg)
         icondraw.bitmap((0,0),iconImg.getchannel("A"),color)
 
