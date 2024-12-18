@@ -12,6 +12,7 @@ authors = [
 ]
 description = "A library to draw MDI icons onto PIL Image objects."
 readme = "README.md"
+license = {file = "LICENSE"}
 requires-python = ">=3.9"
 keywords = ["mdi", "MaterialDesignIcon", "pictogrammers", "mdi icons", "ttkbootstrap", "tkinter", "tk"]
 classifiers = [
