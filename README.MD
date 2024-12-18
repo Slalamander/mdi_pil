@@ -4,6 +4,8 @@ This is a small library made to easily generate PIL Image objects of mdi
 (Material Design Icon) icons. It also comes with a tool to convert user supplied image files into image objects that adhere to the main sizing principles of mdi icons.
 There are also two additional functions, `parse_weather_icon` and `make_battery_icon`. The former returns a string with the mdi icon corresponding to a given weather condition. The latter creates an image that is similar to the icon showing the battery status in phones, with additional options like fill icons and the like. See the doc strings of those functions for how they work.
 
+To see a project using both implementations, check out [inkBoard Designer](https://github.com/Slalamander/inkBoarddesigner). It uses PythonScreenStackManager for the actual dashboards (which is what this module was originally written for), and the UI makes heavy use of the ttkbootstrap module (and it is also where the idea for that module was born).
+
 ## Install
 `pip install mdi-pil`
 
