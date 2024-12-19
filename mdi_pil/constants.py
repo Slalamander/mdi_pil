@@ -1,6 +1,6 @@
 
 from pathlib import Path
-from typing import Literal, TypeVar, Union
+from typing import TypeVar, Union
 
 __version__ = "1.1.5"
 
@@ -47,7 +47,6 @@ MDI_WEATHER_ICONS : dict = {"default": "cloudy",
             }}
 "Dict linking forecast conditions to mdi icons"
 
-# mdiType = Literal["mdi:icon"]
 mdiType = TypeVar("mdi:icon", bound=str)
 "type hint for mdi icons"
 

@@ -13,7 +13,7 @@ from types import MappingProxyType
 from math import cos, sin
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps, ImageChops
-from PIL.ImageColor import getrgb as PILgetrgb, getcolor as PILgetcolor
+from PIL.ImageColor import getcolor as PILgetcolor
 
 from .constants import MDI_FONT_FILE, MDI_INDEX_FILE, MDI_WEATHER_ICONS, mdiType, ColorType
 
@@ -105,7 +105,6 @@ def is_mdi(mdi : Any) -> bool:
         return False
     mdistr = mdi.lower()
     if len(mdistr) <= 4 or mdistr[0:4] not in ALLOWED_MDI_IDENTIFIERS:
-        # logger.error(f"{mdi} is not a valid mdi icon string. Please ensure it starts with one of {ALLOWED_MDI_IDENTIFIERS}. (Caps are allowed)")
         return False
     
     return True
@@ -175,7 +174,7 @@ def _get_Color(color : Union[str,tuple], colorMode:str) -> Union[tuple]:
             ##This line plus the alpha channel at the end should take care of BW colors
             if len(color) in [1,2]:
                 colorList[0:len(colorMode)] = [color[0]] * len(colorMode)
-            else: # len(color) > len(colorMode):
+            else:
                 ##Means color is RGB or RGBA
                 if "RGB" in colorMode:
                     colorList[0:3] = color[0:3]
@@ -191,7 +190,6 @@ def _get_Color(color : Union[str,tuple], colorMode:str) -> Union[tuple]:
     if isinstance(color, str):       
         try:
             colorTup = PILgetcolor(color,colorMode)
-            # print(colorMode)
         except:
             logger.error(f"Could not recognise {color} as a valid color. Returning black")
             return PILgetcolor("black",colorMode)
@@ -222,7 +220,6 @@ def invert_Image(img : Image.Image) -> Image.Image:
         alpha = img.getchannel("A")
         img = ImageChops.invert(img)
         img.putalpha(alpha)
-        # img.paste(ImageOps.invert(img),mask=img)
     else:
         img = ImageOps.invert(img)
     return img

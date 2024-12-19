@@ -4,8 +4,8 @@ import re
 
 from PIL import ImageTk, Image, ImageFont, ImageDraw
 
-from ttkbootstrap import Style, constants as const
-from ttkbootstrap.style import Keywords, Bootstyle, StyleBuilderTTK, Colors
+from ttkbootstrap import constants as const
+from ttkbootstrap.style import Keywords, Bootstyle, StyleBuilderTTK
 from ttkbootstrap.publisher import Publisher, Channel
 
 from . import *
@@ -89,8 +89,6 @@ class PhotoIcon(ImageTk.PhotoImage):
             return Bootstyle.update_ttk_widget_style(self,self.bootstyle)
 
     def _get_color(self):
-
-        # ttk_style = Bootstyle.update_ttk_widget_style(self, self.bootstyle)
         ttk_style = self._get_ttk_style()
         value = self.tk.call(
             "ttk::style", "lookup", ttk_style, "-%s" % "icon", None, None
@@ -270,8 +268,6 @@ class MDIButton(PhotoIcon):
 
 StyleBuilderTTK.create_iconbutton_style = MDIButton.create_iconbutton_style
 StyleBuilderTTK.create_icon_style = PhotoIcon.create_icon_style
-
-
 
 Keywords.CLASSES.extend(["iconbutton","icon"])
 Keywords.CLASS_PATTERN = re.compile("|".join(Keywords.CLASSES))
