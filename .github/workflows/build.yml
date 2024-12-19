@@ -1,4 +1,4 @@
-name: Build on distribution on push
+name: Build distribution on push
 
 on: 
     push:
