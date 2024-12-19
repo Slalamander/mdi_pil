@@ -8,8 +8,6 @@ jobs:
     build:
         name: Build distribution 📦
         runs-on: ubuntu-latest
-        # outputs:
-        #     output1: ${{ steps.storedist.outputs.test }}
     
         steps:
         - uses: actions/checkout@v4
