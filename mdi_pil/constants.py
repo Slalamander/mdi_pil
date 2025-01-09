@@ -2,7 +2,7 @@
 from pathlib import Path
 from typing import TypeVar, Union
 
-__version__ = "1.1.6"
+__version__ = "1.1.7"
 
 MDI_FONT_FILE = "materialdesignicons-webfont.ttf"
 MDI_INDEX_FILE = "_variables.scss"
