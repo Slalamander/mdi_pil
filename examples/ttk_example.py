@@ -1,3 +1,5 @@
+##Example of using the ttkbootstrap extension to easily put mdi icons in your tkinter ui's
+
 from ttkbootstrap import Window, Button
 from mdi_pil.ttkbootstrap_mdi import MDIIcon, MDIButton
 
