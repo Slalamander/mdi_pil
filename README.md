@@ -13,7 +13,7 @@ To see a project using both implementations, check out [inkBoard Designer](https
 
 Make a PIL image object with the icon "mdi:test-tube" and open a window to show it:
 
-```
+```python
 from PIL import Image
 import mdi_pil as mdi
 
@@ -26,7 +26,7 @@ img.show()
 
 Convert the image file "speaker-outline.png" into an mdi-like icon:
 
-```
+```python
 from PIL import Image
 import mdi_pil as mdi
 
@@ -46,6 +46,7 @@ Version 1.1.0 comes with an optional extension to use MDI icons in tkinter inter
 ### Usage:
 
 The classes return PhotoImage objects, so they are used in the same way you'd use a `PIL.ImageTk.PhotoImage`.
+The ``MDIButton`` widget making combining text and an icon convenient, and allows using custom fonts without the hassle and limitations of doing so via TKinter. The downside of this is that the text is part of the image as well, so for accessibility (i.e. screenreaders), extra steps like a tooltip widget are needed.
 
 For more info on styling than is in the docstrings, look at the documentation for ttkbootstrap and tkinter itself.
 
