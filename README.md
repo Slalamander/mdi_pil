@@ -80,3 +80,9 @@ buttonWidget.pack()
 
 root.mainloop()
 ```
+
+# References
+
+- Pictogrammers, with the complete index of all MDI icons: https://pictogrammers.com/
+- Intellisens pluging for material design icons, really improves the quality of life working with the icons in VScode: https://marketplace.visualstudio.com/items?itemName=lukas-tr.materialdesignicons-intellisense
+- ttkbootstrap library, supplies the ability to change your tk icon widgets along with theme changes: https://github.com/israel-dryer/ttkbootstrap
